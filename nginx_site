@@ -1,0 +1,18 @@
+server {
+	listen *:80;
+
+    root /tmp/minibin;
+
+	default_type "text/html; charset=utf-8";
+	rewrite "/([A-z0-9])([A-z0-9]{2})([A-z0-9_\-]{12})" /$1/$2/$3 last;
+
+    location = / {
+        proxy_pass http://localhost:8002;
+    }
+	location = /up {
+		limit_except POST {
+			deny all;
+		}
+        proxy_pass http://localhost:8002;
+	}
+}
