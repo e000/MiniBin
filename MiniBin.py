@@ -11,7 +11,7 @@ domain2 = string.ascii_letters + string.digits
 random_prefix = lambda len = 1: ''.join(random.choice(domain2) for i in xrange(len))
 
 if not os.path.exists(file_path):
-    os.makedirs(file_path, mode = 0755)
+    os.makedirs(file_path, mode = 0777)
 
 if not os.path.isdir(file_path):
     raise RuntimeError("%r is not a directory." % file_path)
@@ -34,7 +34,7 @@ def up():
     _file_path = os.path.join(file_path, prefix_1, prefix_2)
 
     if not os.path.exists(_file_path):
-        os.makedirs(_file_path, 0755)
+        os.makedirs(_file_path, 0777)
 
     with open(os.path.join(_file_path, file_name), 'w') as fp:
         fp.write(render_template("paste.html", date_str = date_str, code = code))
