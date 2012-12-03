@@ -11,7 +11,7 @@ server {
     }
     location = /up {
         limit_except POST {
-        deny all;
+            deny all;
         }
         proxy_pass http://localhost:8002;
     }
